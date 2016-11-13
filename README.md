@@ -1,2 +1,2 @@
-# Skitter-Micro-services-
-A web application made out of Micro services.
+# Skitter
+A web application made on a micro service architecture. 
