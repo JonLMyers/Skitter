@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RegisterController {
 
+    @RequestMapping("/registration")
+    public String registration(){
+        return "registration";
+    }
+
     @RequestMapping("/register")
     public String register(@RequestParam(value="name", required=false, defaultValue = "Jerry") String name, Model model){
         model.addAttribute("name", name);
