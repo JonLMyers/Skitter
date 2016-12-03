@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * Created by soren on 12/3/16.
@@ -11,9 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RegisterController {
 
-    @RequestMapping("/registration")
-    public String registration(){
+    @GetMapping("/registration")
+    public String registrationForm(Model model){
+        model.addAttribute("user", new User());
         return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String registrationSubmit(@ModelAttribute User user){
+        return "result";
     }
 
     @RequestMapping("/register")
