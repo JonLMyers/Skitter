@@ -1,0 +1,11 @@
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/service/SecurityServiceImpl.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/service/SecurityService.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/model/Role.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/validator/UserValidator.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/service/UserDetailsServiceImpl.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/repository/UserRepository.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/service/UserServiceImpl.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/web/UserController.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/model/User.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/service/UserService.java
+/home/soren/Github/Skitter/src/main/java/com/skitter/account/repository/RoleRepository.java

@@ -1,0 +1,11 @@
+com/skitter/account/service/UserServiceImpl.class
+com/skitter/account/repository/UserRepository.class
+com/skitter/account/model/User.class
+com/skitter/account/service/SecurityService.class
+com/skitter/account/service/SecurityServiceImpl.class
+com/skitter/account/repository/RoleRepository.class
+com/skitter/account/validator/UserValidator.class
+com/skitter/account/service/UserService.class
+com/skitter/account/web/UserController.class
+com/skitter/account/model/Role.class
+com/skitter/account/service/UserDetailsServiceImpl.class
