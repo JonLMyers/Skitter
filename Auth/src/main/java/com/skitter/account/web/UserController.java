@@ -1,7 +1,11 @@
 package com.skitter.account.web;
 
+import javax.naming.*;
+import javax.naming.directory.*;
+import java.util.Hashtable;
 import com.skitter.account.model.User;
 import com.skitter.account.service.SecurityService;
+import com.skitter.account.service.SecurityServiceImpl;
 import com.skitter.account.service.UserService;
 import com.skitter.account.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class UserController {
@@ -39,8 +45,31 @@ public class UserController {
             return "registration";
         }
 
-        userService.save(userForm);
+        Hashtable env = new Hashtable();
+        env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
+        env.put(Context.PROVIDER_URL, "ldaps://ldap.rit.edu:389");
+        env.put(Context.SECURITY_AUTHENTICATION,"SSL");
+        env.put(Context.SECURITY_PRINCIPAL,"cn=jlm4508"); // specify the username
+        env.put(Context.SECURITY_CREDENTIALS,"Blek");           // specify the password
 
+        try{
+            DirContext ctx = new InitialDirContext(env);
+            String searchBase = "DC=server,DC=example,DC=COM";
+            String FILTER = "(&(objectClass=user)(objectCategory=person)((sAMAccountName=" + userForm.getUsername() + ")))";
+            SearchControls ctls = new SearchControls();
+            ctls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+            NamingEnumeration<SearchResult> answer = ctx.search(searchBase, FILTER, ctls);
+            SearchResult result = answer.next();
+            Attribute email = result.getAttributes().get("mail");
+            Attribute cn = result.getAttributes().get("cn");
+            ctx.close();
+        }
+        catch(Exception ex){
+
+        }
+
+
+        userService.save(userForm);
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
         return "redirect:/welcome";
@@ -62,9 +91,9 @@ public class UserController {
         User user = userService.findByScreenName(username);
         if(user != null){
             userService.delete(user);
-            return "User Deleted";
+            return "{User Deleted}";
         }
-        return "No User";
+        return "{No User}";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
