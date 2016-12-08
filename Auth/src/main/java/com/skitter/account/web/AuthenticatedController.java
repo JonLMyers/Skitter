@@ -42,10 +42,10 @@ public class AuthenticatedController {
             con.setRequestProperty("User-Agent", USER_AGENT);
             con.setRequestProperty("Cookie", sessionId);
             int responseCode = con.getResponseCode();
-            return "Code:" + responseCode;
+            return "{Code, " + responseCode + "}";
         }
         catch(Exception ex){
-            return "FAILURE!";
+            return "{Code, 6}";
         }
 
     }

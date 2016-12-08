@@ -14,6 +14,7 @@
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
         <session-management session-authentication-strategy-ref="sas" invalid-session-url="/invalid-session" />
+        <csrf disabled="true" />
     </http>
 
     <authentication-manager alias="authenticationManager">

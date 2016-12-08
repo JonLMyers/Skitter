@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -54,6 +55,16 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
+    }
+
+    @RequestMapping(value = {"/delete"}, method = RequestMethod.GET)
+    public String deleteUser(@RequestParam(value="username") String username){
+        User user = userService.findByScreenName(username);
+        if(user != null){
+            userService.delete(user);
+            return "User Deleted";
+        }
+        return "No User";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
