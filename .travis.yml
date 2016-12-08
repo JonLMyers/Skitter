@@ -1,5 +1,5 @@
 language: java
 sudo: false
-script: mvn test
+script: cd auth && mvn test
         mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
