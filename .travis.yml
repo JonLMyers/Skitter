@@ -1,8 +1,10 @@
 language: java
+env: 
+- DB=mysql
 sudo: false
 script: cd Auth 
         && mvn test 
-        && mvn jetty:run 
+        && mvn jetty:run &
         && cd .. 
         && cd Tests
         && FullAuthTest.py
