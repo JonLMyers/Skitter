@@ -10,8 +10,7 @@ env:
 sudo: false
 
 before_script:
-  - "ls"
-  - "mysql -u root -e 'source Auth/src/main/resources/db.sql'"
+  - "mysql -u root -e 'source /home/travis/build/JonLMyers/Skitter/Auth/src/main/resources/db.sql'"
 
 script:
   - "cd Auth"
