@@ -47,7 +47,7 @@ def delete_user():
         response = urllib2.urlopen(url)
         print response.read()
 
-time.sleep(20)
+time.sleep(60)
 cookie = reg_user()
 print "-----------------------"
 print cookie
