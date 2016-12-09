@@ -7,7 +7,7 @@ services:
 env:
 - DB=mysql
 
-sudo: false
+sudo: true
 
 before_script:
   - "./setup.sh"
