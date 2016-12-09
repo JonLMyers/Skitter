@@ -11,7 +11,7 @@ sudo: false
 
 before_script:
   - "ls"
-  - "mysql -u root -e script Auth/src/main/resources/db.sql"
+  - "mysql -u root -e 'script Auth/src/main/resources/db.sql'"
 
 script:
   - "cd Auth"
