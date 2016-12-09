@@ -9,9 +9,6 @@ env:
 
 sudo: false
 
-install:
-  - mvn test
-
 before_script:
   - "./setup.sh"
 
