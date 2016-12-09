@@ -52,7 +52,7 @@ public class UserController {
 
         try{
             DirContext ctx = new InitialDirContext(env);
-            String searchBase = "DC=server,DC=example,DC=COM";
+            String searchBase = "OU=people,DC=rit,DC=EDU";
             String FILTER = "(&(objectClass=user)(objectCategory=person)((sAMAccountName=" + userForm.getUsername() + ")))";
             SearchControls ctls = new SearchControls();
             ctls.setSearchScope(SearchControls.SUBTREE_SCOPE);
