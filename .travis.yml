@@ -1,11 +1,21 @@
-language: java
-env: 
-- DB=mysql
-sudo: false
-script: cd Auth 
-        && mvn test 
-        && mvn jetty:run &
-        && cd .. 
-        && cd Tests
-        && python FullAuthTest.py
+language:
+  - java
 
+services:
+  - mysql
+
+env:
+- DB=mysql
+
+sudo: false
+
+install:
+  - mvn test
+
+before_script:
+  - "./setup.sh"
+
+script:
+  - "cd Auth"
+  - "mvn jetty:run &"
+  - "python FullAuthTest.py"

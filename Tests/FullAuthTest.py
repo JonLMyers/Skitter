@@ -1,5 +1,6 @@
 import urllib2
 import sys
+import time
 
 def reg_user():
 
@@ -46,6 +47,7 @@ def delete_user():
         response = urllib2.urlopen(url)
         print response.read()
 
+time.sleep(20)
 cookie = reg_user()
 print "-----------------------"
 print cookie
