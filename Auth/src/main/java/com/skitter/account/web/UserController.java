@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Controller
 public class UserController {
@@ -47,7 +45,7 @@ public class UserController {
 
         Hashtable env = new Hashtable();
         env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
-        env.put(Context.PROVIDER_URL, "ldaps://ldap.rit.edu:389");
+        env.put(Context.PROVIDER_URL, "ldaps://ldap.rit.edu:686");
         env.put(Context.SECURITY_AUTHENTICATION,"SSL");
         env.put(Context.SECURITY_PRINCIPAL,"cn=jlm4508"); // specify the username
         env.put(Context.SECURITY_CREDENTIALS,"Blek");           // specify the password
