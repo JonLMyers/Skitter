@@ -47,30 +47,36 @@ public class UserController {
         env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
         env.put(Context.PROVIDER_URL, "ldaps://ldap.rit.edu:686");
         env.put(Context.SECURITY_AUTHENTICATION,"SSL");
-        env.put(Context.SECURITY_PRINCIPAL,"cn=jlm4508"); // specify the username
-        env.put(Context.SECURITY_CREDENTIALS,"Blek");           // specify the password
+        env.put(Context.SECURITY_PRINCIPAL,"cn=" + userForm.getUsername()); // specify the username
+        env.put(Context.SECURITY_CREDENTIALS, userForm.getPassword());           // specify the password
 
         try{
             DirContext ctx = new InitialDirContext(env);
-            String searchBase = "OU=people,DC=rit,DC=EDU";
-            String FILTER = "(&(objectClass=user)(objectCategory=person)((sAMAccountName=" + userForm.getUsername() + ")))";
-            SearchControls ctls = new SearchControls();
-            ctls.setSearchScope(SearchControls.SUBTREE_SCOPE);
-            NamingEnumeration<SearchResult> answer = ctx.search(searchBase, FILTER, ctls);
-            SearchResult result = answer.next();
-            Attribute email = result.getAttributes().get("mail");
-            Attribute cn = result.getAttributes().get("cn");
-            ctx.close();
+            if(ctx != null){
+                userService.save(userForm);
+                securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+
+                return "redirect:/welcome";
+            }
+            //String searchBase = "OU=people,DC=rit,DC=EDU";
+            //String FILTER = "(&(objectClass=user)(objectCategory=person)((sAMAccountName=" + userForm.getUsername() + ")))";
+            //SearchControls ctls = new SearchControls();
+            //ctls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+            //NamingEnumeration<SearchResult> answer = ctx.search(searchBase, FILTER, ctls);
+            //SearchResult result = answer.next();
+            //Attribute email = result.getAttributes().get("mail");
+            //Attribute cn = result.getAttributes().get("cn");
+            //ctx.close();
         }
         catch(Exception ex){
 
         }
 
 
-        userService.save(userForm);
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+        //userService.save(userForm);
+        //securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/welcome";
+        //return "redirect:/welcome";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
