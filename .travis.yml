@@ -12,4 +12,6 @@ sudo: false
 script:
   - "cd Auth"
   - "mvn jetty:run &"
+  - "cd .."
+  - "cd Tests"
   - "python FullAuthTest.py"
