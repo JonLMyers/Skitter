@@ -1,22 +1,27 @@
 package com.skitter.account.web;
 
-import org.springframework.security.core.session.SessionInformation;
-import org.springframework.security.core.session.SessionRegistry;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.*;
-
-import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.session.Session;
-import com.skitter.account.model.Authenticated;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.session.HttpSessionCreatedEvent;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import javax.naming.*;
+import javax.naming.directory.*;
+import java.util.Hashtable;
+import com.skitter.account.model.User;
+import com.skitter.account.service.SecurityService;
+import com.skitter.account.service.SecurityServiceImpl;
+import com.skitter.account.service.UserService;
+import com.skitter.account.validator.UserValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import static org.springframework.http.HttpHeaders.USER_AGENT;
 
@@ -26,8 +31,6 @@ import static org.springframework.http.HttpHeaders.USER_AGENT;
 
 @RestController
 public class AuthenticatedController {
-
-
 
     @RequestMapping("/isAuthenticated")
     public String isAuthenticated(@RequestParam(value="sessionId") String sessionId){

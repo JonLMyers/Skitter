@@ -89,9 +89,9 @@ public class UserController {
         User user = userService.findByScreenName(username);
         if(user != null){
             userService.delete(user);
-            return "{User Deleted}";
+            return "deleted";
         }
-        return "{No User}";
+        return "failed";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
