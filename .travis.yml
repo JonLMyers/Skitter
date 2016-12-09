@@ -7,5 +7,5 @@ script: cd Auth
         && mvn jetty:run &
         && cd .. 
         && cd Tests
-        && FullAuthTest.py
+        && python FullAuthTest.py
 
