@@ -71,7 +71,7 @@ public class UserController {
         catch(Exception ex){
 
         }
-
+        return "failed";
 
         //userService.save(userForm);
         //securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
