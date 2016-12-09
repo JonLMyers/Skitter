@@ -10,7 +10,7 @@ env:
 sudo: true
 
 before_script:
-  - "./setup.sh"
+  - "sudo ./setup.sh"
 
 script:
   - "cd Auth"
